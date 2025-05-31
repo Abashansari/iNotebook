@@ -3,6 +3,7 @@ import User from "../modules/User.js"
 import { body, validationResult } from "express-validator"
 import bcrypt from "bcrypt"
 import jwt from "jsonwebtoken"
+import fetchUser from "../middleware/fetchuser.js"
 
 
 const router = express.Router()
@@ -77,6 +78,7 @@ const loginValidation = [
 ]
 
 router.post('/login', loginValidation, async (req, res) => {
+
     const error = validationResult(req);
     if (!error.isEmpty()) {
         return res.status(400).json({ errors: error.array() }); // Add return to prevent further code execution
@@ -111,5 +113,26 @@ router.post('/login', loginValidation, async (req, res) => {
     }
 });
 
+//----------------------------Get loggedin user Details------------------------------------------------------------------------------------->
+
+router.post('/getUser', fetchUser, async (req, res) => {
+    try {
+
+        const userId = req.user.id
+
+        const user = await User.findById(userId).select("-password")
+        res.json({ user, message: "User data fetched successfully" })
+
+        if (!user) {
+            res.status(404).json({ error: "User not found" })
+        }
+
+
+    } catch (error) {
+
+        res.status(500).json({ error: error.message });
+
+    }
+})
 
 export default router
