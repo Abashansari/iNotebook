@@ -6,6 +6,7 @@ import bcrypt from "bcrypt"
 
 const router = express.Router()
 
+//--------------------------------------------Register Validaton--------------------------------------------------------------------------------->
 const registerValidation = [
     body('userName').notEmpty().withMessage('Username is required'),
 
@@ -20,6 +21,7 @@ const registerValidation = [
     body('password').isStrongPassword().withMessage('Weak password')
 ]
 
+//-----------------------------------------------Creating a User------------------------------------------------------------------------------------>
 
 router.post('/', registerValidation, async (req, res) => {
     const error = validationResult(req)
@@ -29,21 +31,29 @@ router.post('/', registerValidation, async (req, res) => {
     }
     // res.send("user created")
 
-    try {
+
+
+
+    try{
         const { userName, email, password } = req.body
+
+        const saltRounds = 10                                    // giving salt limit = 10 ,so it can only add 10 hashpassword 
+
+        const hashedPassword = await bcrypt.hash(password,saltRounds)
+        console.log("Hashed password:",hashedPassword)  
 
         const user = new User({
             userName,
             email,
-            password
+            password:hashedPassword                  // Store hashed password
         })
-        await user.save()   // store data in mongodb
-
-        res.send(req.body)                //for debugging (to see what server has recived)
-        res.status(201).send(user)        //returning a newly created resource.
+        await user.save()                                    // store data in mongodb
+        // res.send(req.body)                             //for debugging (to see what server has recived)
+        res.status(201).send({userName,email})          //returning a newly created resource.
 
     } catch (error) {
         res.status(400).send({ error: error.message })
+       
     }
 })
 export default router
