@@ -16,7 +16,7 @@ const registerValidation = [
         .custom(async (value) => {                                               // checking if user is already exist ??
             const userExist = await User.findOne({ email: value })
             if (userExist) {
-                throw new Error("Email is in use")         // Throw error instead of res.send()
+                throw new Error("Sorry a user with this Email is already exist")         // Throw error instead of res.send()
             }
         }),
     body('password').isStrongPassword().withMessage('Weak password')
@@ -47,6 +47,17 @@ router.post('/', registerValidation, async (req, res) => {
             email,
             password: hashedPassword                  // Store hashed password
         })
+        //--------------------------------------Creating a Token------------------------------------------------------------------------>
+
+        const data = {
+            user: {
+                id: user.id
+            }
+        }
+
+        const token = jwt.sign(data, 'shhhhh')
+        res.json({ token })
+
         await user.save()                                    // store data in mongodb
         // res.send(req.body)                             //for debugging (to see what server has recived)
         res.status(201).send({ userName, email })          //returning a newly created resource.
