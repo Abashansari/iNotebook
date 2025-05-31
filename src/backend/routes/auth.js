@@ -2,6 +2,7 @@ import express from "express"
 import User from "../modules/User.js"
 import { body, validationResult } from "express-validator"
 import bcrypt from "bcrypt"
+import jwt from "jsonwebtoken"
 
 
 const router = express.Router()
@@ -34,26 +35,25 @@ router.post('/', registerValidation, async (req, res) => {
 
 
 
-    try{
+    try {
         const { userName, email, password } = req.body
 
-        const saltRounds = 10                                    // giving salt limit = 10 ,so it can only add 10 hashpassword 
-
-        const hashedPassword = await bcrypt.hash(password,saltRounds)
-        console.log("Hashed password:",hashedPassword)  
+        const saltRounds = 10                                    // Salt rounds tell bcrypt how many times to run the hashing algorithm internally
+        const hashedPassword = await bcrypt.hash(password, saltRounds)
+        console.log("Hashed password:", hashedPassword)
 
         const user = new User({
             userName,
             email,
-            password:hashedPassword                  // Store hashed password
+            password: hashedPassword                  // Store hashed password
         })
         await user.save()                                    // store data in mongodb
         // res.send(req.body)                             //for debugging (to see what server has recived)
-        res.status(201).send({userName,email})          //returning a newly created resource.
+        res.status(201).send({ userName, email })          //returning a newly created resource.
 
     } catch (error) {
         res.status(400).send({ error: error.message })
-       
+
     }
 })
 export default router
