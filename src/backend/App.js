@@ -1,7 +1,7 @@
-
-import express from "express";
-import router from "./routes/auth.js"
 import connectToMongo from "./db.js";
+import express from "express";
+import authRoutes from "./routes/auth.js";
+import notesRoutes from "./routes/notes.js";
 
 connectToMongo()
 
@@ -10,7 +10,8 @@ const port = 5000
 
 app.use(express.json())
 
-app.use("/api/auth", router)
+app.use('/api/auth', authRoutes);
+app.use('/api/notes', notesRoutes);
 
 
 app.listen(port, () => {
