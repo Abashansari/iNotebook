@@ -48,4 +48,46 @@ notesRoutes.post('/addNotes', fetchUser, notesValidations, async (req, res) => {
     }
 })
 
+//-------------------------------Update the existing Notes---------------------------------------------------------------------->
+
+notesRoutes.put('/updatenotes/:id', fetchUser, async (req,res)=>{
+    try {
+
+        const {title,description,tag} = req.body
+
+        // create a newNotes object
+        const newNote = {}
+        if(title){
+            newNote.title = title
+        }
+        if(description){
+            newNote.description = description
+        }
+        if(tag){
+            newNote.tag = tag
+        }
+
+        let note = await Notes.findById(req.params.id)
+        if(!note){
+            res.status(404).json("NOT FOUND !")
+        }
+
+        if(note.user.toString() !== req.user.id){
+            res.status(401).json("Not Allowed")
+        }
+
+
+        // Check if user owns the note
+        note = await Notes.findByIdAndUpdate(req.params.id,{$set:newNote},{new:true})
+        res.json(note)
+        console.log("PUT /updatenotes/:id hit");
+
+    } catch (error) {
+
+       res.status(400).json({error:error.message}) 
+
+    }
+
+})
+
 export default notesRoutes
