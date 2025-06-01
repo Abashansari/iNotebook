@@ -6,7 +6,7 @@ import jwt from "jsonwebtoken"
 import fetchUser from "../middleware/fetchuser.js"
 
 
-const router = express.Router()
+const authRoutes = express.Router()
 
 //--------------------------------------------Register Validaton--------------------------------------------------------------------------------->
 
@@ -26,7 +26,7 @@ const registerValidation = [
 
 //-----------------------------------------------Creating a User------------------------------------------------------------------------------------>
 
-router.post('/createUser', registerValidation, async (req, res) => {
+authRoutes.post('/createUser', registerValidation, async (req, res) => {
     const error = validationResult(req)
 
     if (!error.isEmpty()) {
@@ -77,7 +77,7 @@ const loginValidation = [
     body('password').notEmpty().withMessage("password is required")
 ]
 
-router.post('/login', loginValidation, async (req, res) => {
+authRoutes.post('/login', loginValidation, async (req, res) => {
 
     const error = validationResult(req);
     if (!error.isEmpty()) {
@@ -115,7 +115,7 @@ router.post('/login', loginValidation, async (req, res) => {
 
 //----------------------------Get loggedin user Details------------------------------------------------------------------------------------->
 
-router.post('/getUser', fetchUser, async (req, res) => {
+authRoutes.post('/getUser', fetchUser, async (req, res) => {
     try {
 
         const userId = req.user.id
@@ -135,4 +135,4 @@ router.post('/getUser', fetchUser, async (req, res) => {
     }
 })
 
-export default router
+export default authRoutes
