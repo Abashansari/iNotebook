@@ -11,12 +11,14 @@ import {
 } from "react-router-dom"
 import Home from './component/Home';
 import About from './component/About';
+import NoteState from './context/notes/NoteState';
 
 
 function App() {
   return (
     <>
     <div>
+      <NoteState>
       <Router>
       <NavBar />
       <Routes>
@@ -24,6 +26,7 @@ function App() {
         <Route path='/about' element={<About />}></Route>
       </Routes>
       </Router>
+      </NoteState>
     </div>
     </>
   );
