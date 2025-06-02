@@ -1,7 +1,8 @@
-import connectToMongo from "./db.js";
+import connectToMongo from "./server.js";
 import express from "express";
 import authRoutes from "./routes/auth.js";
 import notesRoutes from "./routes/notes.js";
+
 
 connectToMongo()
 
