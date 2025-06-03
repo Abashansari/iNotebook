@@ -1,27 +1,43 @@
-import Button from 'react-bootstrap/Button';
-import Container from 'react-bootstrap/Container';
-import Form from 'react-bootstrap/Form';
-import Nav from 'react-bootstrap/Nav';
-import Navbar from 'react-bootstrap/Navbar';
-import { Link } from 'react-router-dom';
+import React, { useEffect } from 'react'
+import { Link,useLocation } from 'react-router-dom'
 
-export default function NavBar() {
+
+export default function Navbar (){
+    let location = useLocation()
+        useEffect(()=>{
+            console.log(location.pathname)
+        },[location])
+    
+
     return (
-        <Navbar expand="lg" className="bg-body-tertiary">
-            <Container fluid>
-                <Navbar.Brand to="#">iNoteBook</Navbar.Brand>
-                <Navbar.Toggle aria-controls="navbarScroll" />
-                <Navbar.Collapse id="navbarScroll">
-                    <Nav className="me-auto my-2 my-lg-0" style={{ maxHeight: '100px' }} navbarScroll>
-                        <Nav.Link as={Link} to="/home">Home</Nav.Link>
-                        <Nav.Link as={Link} to="/about">About</Nav.Link>
-                    </Nav>
-                    <Form className="d-flex">
-                        <Form.Control type="search" placeholder="Search" className="me-2" aria-label="Search"/>
-                        <Button variant="outline-success">Search</Button>
-                    </Form>
-                </Navbar.Collapse>
-            </Container>
-        </Navbar>
-    );
-}
+      <>
+        <nav className="navbar fixed-top navbar-expand-lg bg-body-tertiary ">
+          <div className="container-fluid">
+
+            <Link className="navbar-brand" to="">iNoteBook</Link>
+
+            <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+              <span className="navbar-toggler-icon"></span>
+            </button>
+
+            <div className="collapse navbar-collapse" id="navbarSupportedContent">
+              <ul className="navbar-nav me-auto mb-2 mb-lg-0">
+
+                <li className="nav-item"><Link className={`nav-link ${location.pathname == "/home" ? "active" : ""}`} aria-current="page" to="/">Home</Link></li>
+                <li className="nav-item"><Link className={`nav-link ${location.pathname == "/home" ? "active" : ""}`} aria-current="page" to="/about">About</Link></li>
+                          
+              </ul>
+            </div>
+          </div>
+          <div className="navbar-end">
+      <div className="navbar-item">
+        <div className="buttons">
+          <a className="button is-dark"><strong>Register</strong></a>
+          <a className="button is-light">Sign in</a>
+        </div>
+        </div>
+    </div>
+        </nav>
+      </>
+    )
+  }
