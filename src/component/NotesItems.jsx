@@ -10,6 +10,7 @@ export default function NotesItems({ note }) {
         <p className="card-text">{note.description}</p>
         <a href="#" className="btn btn-primary">{note.tag}</a>
         <div className="mt-2">
+{/* -----------------------------Adding icons--------------------------------------------------------------------------------- */}
           <FontAwesomeIcon icon={faTrash} style={{ cursor: 'pointer', marginRight: '10px' }} />
           <FontAwesomeIcon icon={faPenToSquare} style={{ cursor: 'pointer' }} />
         </div>
