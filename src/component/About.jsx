@@ -5,6 +5,6 @@ import NoteContext from '../context/notes/NoteContext'
 export default function About() {
   const {user} = useContext(NoteContext)
   return (
-    <div> This is, {user}</div>
+    <div> This is, {user} and he is greate</div>
   )
 }

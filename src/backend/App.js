@@ -1,4 +1,4 @@
-import connectToMongo from "./server.js";
+import connectToMongo from "./db.js";
 import express from "express";
 import authRoutes from "./routes/auth.js";
 import notesRoutes from "./routes/notes.js";
@@ -16,7 +16,7 @@ app.use('/api/notes', notesRoutes);
 
 
 app.listen(port, () => {
-  console.log(`App listening on port ${port}`)
+  console.log(`iNotebook backend listening on port: ${port}`)
 })
 
 
