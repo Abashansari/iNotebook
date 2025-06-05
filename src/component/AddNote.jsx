@@ -1,0 +1,61 @@
+import React, { useContext, useState } from 'react'
+import NoteContext from '../context/notes/NoteContext'
+
+export default function AddNote() {
+  const { addNote } = useContext(NoteContext)
+
+  const [note, setNote] = useState({ title: "", description: "", tag: "" })
+
+  const handleClick = (e) => {
+    e.preventDefault(); // prevent form reload
+    addNote(note.title, note.description, note.tag);
+    setNote({ title: "", description: "", tag: "" }); // clear form
+  }
+
+  const onChange = (e) => {
+    setNote({ ...note, [e.target.name]: e.target.value })
+  }
+
+  return (
+    <div className="container my-4">
+      <h2>Add a Note</h2>
+      <form>
+        <div className="mb-3">
+          <label className="form-label">Title</label>
+          <input
+            type="text"
+            className="form-control"
+            name="title"
+            value={note.title}
+            placeholder="Enter note title"
+            onChange={onChange}
+          />
+        </div>
+        <div className="mb-3">
+          <label className="form-label">Description</label>
+          <textarea
+            className="form-control"
+            name="description"
+            value={note.description}
+            placeholder="Enter note description"
+            onChange={onChange}
+          ></textarea>
+        </div>
+        <div className="mb-3">
+          <label className="form-label">Tag</label>
+          <input
+            type="text"
+            className="form-control"
+            name="tag"
+            value={note.tag}
+            placeholder="Enter tag"
+            onChange={onChange}
+          />
+        </div>
+        <button type="submit" className="btn btn-primary" onClick={handleClick}>
+          Add Note
+        </button>
+      </form>
+    </div>
+  )
+}
