@@ -1,11 +1,16 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import Notes from './Notes';
+import NoteContext from '../context/notes/NoteContext';
+import AddNote from './AddNote';
 
 export default function Home() {
-  return (
-    <div className="container my-3">
-      <h1>Welcome to Your Notes</h1>
+const{note} = useContext(NoteContext)
+
+  return(
+    <>
       <Notes />
-    </div>
-  );
+      <AddNote />
+      
+    </>
+  )
 }
