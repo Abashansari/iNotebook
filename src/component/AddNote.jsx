@@ -6,14 +6,13 @@ export default function AddNote() {
 
   const [note, setNote] = useState({ title: "", description: "", tag: "" })
 
-  const handleClick = (e) => {
-    e.preventDefault(); // prevent form reload
-    addNote(note.title, note.description, note.tag);
-    setNote({ title: "", description: "", tag: "" }); // clear form
-  }
-
   const onChange = (e) => {
     setNote({ ...note, [e.target.name]: e.target.value })
+  }
+
+  const handleClick = (e) => {
+    e.preventDefault();              // prevent form reload
+    addNote(note.title, note.description, note.tag);
   }
 
   return (
@@ -22,39 +21,20 @@ export default function AddNote() {
       <form>
         <div className="mb-3">
           <label className="form-label">Title</label>
-          <input
-            type="text"
-            className="form-control"
-            name="title"
-            value={note.title}
-            placeholder="Enter note title"
-            onChange={onChange}
+          <input type="text" className="form-control" name="title" value={note.title} placeholder="Enter note title" onChange={onChange}
           />
         </div>
         <div className="mb-3">
           <label className="form-label">Description</label>
-          <textarea
-            className="form-control"
-            name="description"
-            value={note.description}
-            placeholder="Enter note description"
-            onChange={onChange}
+          <textarea className="form-control" name="description" value={note.description} placeholder="Enter note description" onChange={onChange}
           ></textarea>
         </div>
         <div className="mb-3">
           <label className="form-label">Tag</label>
-          <input
-            type="text"
-            className="form-control"
-            name="tag"
-            value={note.tag}
-            placeholder="Enter tag"
-            onChange={onChange}
+          <input type="text" className="form-control" name="tag" value={note.tag} placeholder="Enter tag" onChange={onChange}
           />
         </div>
-        <button type="submit" className="btn btn-primary" onClick={handleClick}>
-          Add Note
-        </button>
+        <button type="submit" className="btn btn-primary" onClick={handleClick}>Add Note</button>
       </form>
     </div>
   )
