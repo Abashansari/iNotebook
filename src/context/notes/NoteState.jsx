@@ -12,21 +12,21 @@ export default function NoteState({ children }) {
       date: "2025-06-04T06:30:20.854Z",
     },
     {
-        _id: "683fe7fc1484545b5b21ba57",
-        user: "683ae0203f23d6a97c2b7dfg",
-        title: " Time of Cholera",
-        description: "A note about the book.",
-        tag: "Book",
-        date: "2025-06-04T06:30:20.854Z",
-      },
-      {
-        _id: "683fe7fc1484545b5b21ba58",
-        user: "683ae0203f23d6a97c2b7dfh",
-        title: "Love in Test",
-        description: "A note about the book.",
-        tag: "Book",
-        date: "2025-06-04T06:30:20.854Z",
-      },
+      _id: "683fe7fc1484545b5b21ba57",
+      user: "683ae0203f23d6a97c2b7dfg",
+      title: " Time of Cholera",
+      description: "A note about the book.",
+      tag: "Book",
+      date: "2025-06-04T06:30:20.854Z",
+    },
+    {
+      _id: "683fe7fc1484545b5b21ba58",
+      user: "683ae0203f23d6a97c2b7dfh",
+      title: "Love in Test",
+      description: "A note about the book.",
+      tag: "Book",
+      date: "2025-06-04T06:30:20.854Z",
+    },
   ];
 
   const [notes, setNotes] = useState(initialNotes);
@@ -34,7 +34,7 @@ export default function NoteState({ children }) {
 
   // ---------ADD a note------------------------>
 
-  const addNote = (title,description,tag) =>{
+  const addNote = (title, description, tag) => {
     //todo API call
     let note = {
       _id: "683fe7fc1484545b5b21ba59",
@@ -44,20 +44,23 @@ export default function NoteState({ children }) {
       tag: tag,
       date: "2025-06-04T06:30:20.854Z",
     }
-    setNotes([...notes,note])
+    setNotes([...notes, note])
   }
 
   // ----------DELETE a note------------------------>
 
-const deleteNote = () =>{
-
-}
+  const deleteNote = (id) => {
+    //todo API call
+    console.log("Deleted the note with id :" + id)
+    const newNote = notes.filter((note) => { return note._id !== id })
+    setNotes(newNote)
+  }
 
   // -----------EDIT a note------------------------>
 
-const editNote = ()=>{
+  const editNote = () => {
 
-}
+  }
 
 
   return (
