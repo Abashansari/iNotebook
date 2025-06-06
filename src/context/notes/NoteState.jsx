@@ -37,11 +37,11 @@ export default function NoteState({ children }) {
   const addNote = (title,description,tag) =>{
     //todo API call
     let note = {
-      _id: "683fe7fc1484545b5b21ba58",
+      _id: "683fe7fc1484545b5b21ba59",
       user: "683ae0203f23d6a97c2b7dfh",
-      title: "Love in Test",
-      description: "A note about the book.[added]",
-      tag: "Book",
+      title: title,
+      description: description,
+      tag: tag,
       date: "2025-06-04T06:30:20.854Z",
     }
     setNotes([...notes,note])
