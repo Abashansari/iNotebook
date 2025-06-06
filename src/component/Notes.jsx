@@ -3,7 +3,7 @@ import NoteContext from '../context/notes/NoteContext'
 import NotesItems from './NotesItems'
 
 export default function Notes() {
-  const {notes} = useContext(NoteContext)
+  const {notes,addNote} = useContext(NoteContext)
   return (
     <div className="row my-3">
       {notes.map(note =>{
