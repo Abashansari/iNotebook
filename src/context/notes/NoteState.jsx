@@ -23,10 +23,6 @@ export default function NoteState({ children }) {
       console.error("Error fetching notes:", error.message);
     }
   };
-// Load notes on component mount
-useEffect(()=>{
-  getNotes()
-},[])
 
   // ---------ADD a note------------------------>
   const addNote = async (title, description, tag) => {
