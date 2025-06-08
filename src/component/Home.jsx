@@ -4,13 +4,13 @@ import NoteContext from '../context/notes/NoteContext';
 import AddNote from './AddNote';
 
 export default function Home() {
-const{note} = useContext(NoteContext)
+  const { note } = useContext(NoteContext)
 
-  return(
+  return (
     <>
       <Notes />
       <AddNote />
-      
+
     </>
   )
 }
