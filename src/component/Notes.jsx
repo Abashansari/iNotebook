@@ -27,11 +27,19 @@ export default function Notes() {
 
   const handleClickEdit = () => {
     editNote(note.id, note.title, note.description, note.tag);
-  };
+
+    // setTimeout(()=>{
+    //   setNote({ id: '', title: '', description: '', tag: '' }); //  reset form
+    // },3000)
+     };
 
   const onChange = (e) => {
     setNote({ ...note, [e.target.name]: e.target.value });
   };
+
+
+  //  Validation conditions
+  const isValid = note.title.trim().length >= 3 && note.description.trim().length >= 5
 
   return (
     <>
@@ -46,7 +54,7 @@ export default function Notes() {
         Open Modal
       </button>
 
-      {/* Notes list */}
+      {/*--------------Display Notes list in Screen------------------------------------------ */}
       <div className="row my-3">
         {notes.map((noteItem) => (
           <NotesItems key={noteItem._id} note={noteItem} updateNote={updateNote} />
@@ -85,10 +93,16 @@ export default function Notes() {
                 onChange={onChange}
                 placeholder="Tag"
               />
+              {/*  Validation Message */}
+              {!isValid && (
+                <div className="text-danger">
+                  Title must be at least 3 characters and description at least 5 characters.
+                </div>
+              )}
             </div>
             <div className="modal-footer">
               <button type="button" className="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-              <button type="button" className="btn btn-primary" onClick={handleClickEdit} data-bs-dismiss="modal">
+              <button type="button" className="btn btn-primary" onClick={handleClickEdit} data-bs-dismiss="modal" disabled={!isValid}>
                 Save Changes
               </button>
             </div>

@@ -14,6 +14,8 @@ export default function AddNote() {
     e.preventDefault();              // prevent form reload
     addNote(note.title, note.description, note.tag);
   }
+  //  Validation conditions
+  const isValid = note.title.trim().length >= 3 && note.description.trim().length >= 5
 
   return (
     <div className="container my-4">
@@ -34,7 +36,14 @@ export default function AddNote() {
           <input type="text" className="form-control" name="tag" value={note.tag} placeholder="Enter tag" onChange={onChange}
           />
         </div>
-        <button type="submit" className="btn btn-primary" onClick={handleClick}>Add Note</button>
+
+        {/*  Validation Message */}
+        {!isValid && (
+          <div className="text-danger">
+            REMINDER : Title must be at least 3 characters and description at least 5 characters.
+          </div>
+        )}
+        <button type="submit" className="btn btn-primary" onClick={handleClick} disabled={!isValid}>Add Note</button>
       </form>
     </div>
   )
