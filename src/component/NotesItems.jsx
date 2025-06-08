@@ -3,9 +3,9 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTrash, faPenToSquare } from '@fortawesome/free-solid-svg-icons';
 import NoteContext from '../context/notes/NoteContext';
 
-export default function NotesItems({ note }) {
+export default function NotesItems({ note, updateNote }) {
 
-  const {deleteNote,editNote} = useContext(NoteContext)
+  const {deleteNote} = useContext(NoteContext)
 
   return (
     <div className="card" style={{width: "18rem"}}>
@@ -16,7 +16,7 @@ export default function NotesItems({ note }) {
         <div className="mt-2">
 {/* -----------------------------Adding icons--------------------------------------------------------------------------------- */}
           <FontAwesomeIcon icon={faTrash} style={{ cursor: 'pointer', marginRight: '10px' }} onClick={()=>deleteNote(note._id)}/>
-          <FontAwesomeIcon icon={faPenToSquare} style={{ cursor: 'pointer' }} onClick={()=> editNote(note._id,note.title,note.description,note.tag)}/>
+          <FontAwesomeIcon icon={faPenToSquare} style={{ cursor: 'pointer' }} onClick={()=> updateNote(note)}/>
         </div>
       </div>
     </div>
