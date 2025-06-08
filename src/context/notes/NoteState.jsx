@@ -1,11 +1,11 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import NoteContext from "./NoteContext";
 
 export default function NoteState({ children }) {
   const initialNotes = [];
   const [notes, setNotes] = useState(initialNotes);
 
-  // -----------Get all notes---------------------->
+  // -----------Get all notes from database/mongodb---------------------->
   const getNotes = async () => {
     // API call
     try {
@@ -23,6 +23,10 @@ export default function NoteState({ children }) {
       console.error("Error fetching notes:", error.message);
     }
   };
+// Load notes on component mount
+useEffect(()=>{
+  getNotes()
+},[])
 
   // ---------ADD a note------------------------>
   const addNote = async (title, description, tag) => {
