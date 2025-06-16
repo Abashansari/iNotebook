@@ -1,35 +1,46 @@
 import React from 'react';
 import { AppProvider } from '@toolpad/core/AppProvider';
-
 import {
   SignInPage,
-  AuthProvider,
 } from '@toolpad/core/SignInPage';
-
 import { createTheme } from '@mui/material/styles';
 import { useColorSchemeShim } from 'docs/src/modules/components/ThemeContext';
 import { getDesignTokens, inputsCustomizations } from './customTheme';
 
-// Available sign-in providers
+// Only email and password login
 const providers = [
-  { id: 'github', name: 'GitHub' },
-  { id: 'google', name: 'Google' },
   { id: 'credentials', name: 'Email and Password' },
 ];
 
-// Mock sign-in function
-const signIn = async (provider) => {
-  return new Promise((resolve) => {
-    setTimeout(() => {
-      console.log(`Signed in with ${provider.id}`);
-      resolve({
-        user: {
-          id: '123',
-          name: provider.name,
+// Actual sign-in handler for credentials
+const signIn = async (provider, credentials) => {
+  if (provider.id === 'credentials') {
+    try {
+      const response = await fetch(`http://localhost:5000/api/auth/login`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
         },
+        body: JSON.stringify(credentials),
       });
-    }, 500);
-  });
+
+      if (!response.ok) {
+        throw new Error('Invalid login credentials');
+      }
+
+      const json = await response.json();
+      console.log('Login response:', json);
+      return {
+        user: {
+          id: json.user?.id || '123',
+          name: json.user?.name || 'Email User',
+        },
+      };
+    } catch (error) {
+      console.error('Login failed:', error.message);
+      throw new Error('Login failed: ' + error.message);
+    }
+  }
 };
 
 export default function ThemeSignInPage() {
@@ -46,22 +57,6 @@ export default function ThemeSignInPage() {
     },
   });
 
-  const handleSubmit = async(e) =>{
-    try {
-        e.preventDefault()
-    const response = await fetch(`http://localhost:5000/api/auth/login`,{
-        method : 'POST',
-        headers:{
-            'Content-Type':"application/json"
-        }
-    })
-    const json = await response.json()
-    console.log(json)
-    } catch (error) {
-        res.send(404).json({error:error.message})
-    }
-    
-  }
   return (
     <AppProvider theme={theme}>
       <SignInPage
@@ -72,7 +67,6 @@ export default function ThemeSignInPage() {
           submitButton: {
             color: 'primary',
             variant: 'contained',
-            onClicked:{handleSubmit}
           },
         }}
         sx={{
