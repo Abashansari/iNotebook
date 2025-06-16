@@ -4,6 +4,7 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import NoteState from './context/notes/NoteState';
 import NavBar from './component/Navbar';
 import Home from './component/Home';
+import ThemeSignInPage from './component/Login';
 
 function App() {
   return (
@@ -12,6 +13,7 @@ function App() {
         <NavBar />
         <Routes>
           <Route path='/' element={<Home />} />
+          <Route path='/login' element={<ThemeSignInPage />} />
         </Routes>
       </Router>
     </NoteState>
