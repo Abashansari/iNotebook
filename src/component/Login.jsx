@@ -50,7 +50,7 @@ export default function ThemeSignInPage() {
     try {
         e.preventDefault()
     const response = await fetch(`http://localhost:5000/api/auth/login`,{
-        method : 'GET',
+        method : 'POST',
         headers:{
             'Content-Type':"application/json"
         }
