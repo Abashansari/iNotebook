@@ -17,18 +17,20 @@ export default function Login() {
     }
   }
   return (
-    <div><Form onSubmit={handleSubmit}>
+    <div>
+      <form onSubmit={handleSubmit}>
       <div className="mb-3">
-        <label htmlfor="exampleInputEmail1" className="Form-label">Email address</label>
+        <label htmlFor="exampleInputEmail1" className="Form-label">Email address</label>
         <input type="email" className="Form-control" id="exampleInputEmail1" aria-describedby="emailHelp" />
         <div id="emailHelp" className="htmlForm-text">We'll never share your email with anyone else.</div>
       </div>
       <div className="mb-3">
-        <label htmlfor="exampleInputPassword1" className="Form-label">Password</label>
+        <label htmlFor="exampleInputPassword1" className="Form-label">Password</label>
         <input type="password" className="Form-control" id="exampleInputPassword1" />
       </div>
 
       <button type="submit" className="btn btn-primary" >Submit</button>
-    </Form></div>
+    </form>
+    </div>
   )
 }
