@@ -4,7 +4,8 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import NoteState from './context/notes/NoteState';
 import NavBar from './component/Navbar';
 import Home from './component/Home';
-import ThemeSignInPage from './component/Login';
+import Login from './component/Login';
+import Register from './component/Register';
 
 function App() {
   return (
@@ -13,7 +14,8 @@ function App() {
         <NavBar />
         <Routes>
           <Route path='/' element={<Home />} />
-          <Route path='/login' element={<ThemeSignInPage />} />
+          <Route path='/login' element={<Login />} />
+          <Route path='/register' element={<Register />} />
         </Routes>
       </Router>
     </NoteState>
