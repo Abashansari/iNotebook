@@ -27,7 +27,7 @@ export default function Navbar (){
           <div className="navbar-end">
       <div className="navbar-item">
         <div className="buttons">
-          <a className="button is-dark"><strong>Register</strong></a>
+          <Link className="button is-dark" to="/register"><strong>Register</strong></Link>
           <Link className="button is-light" to="/login">Sign in</Link>
         </div>
         </div>
