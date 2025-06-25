@@ -29,8 +29,8 @@
 
 ### Prerequisites
 
-- Node.js (v20 or latest)
-- MongoDB (local or cloud)
+- Node.js (v24.0.2)
+- MongoDB (local)
 
 ### Installation
 
