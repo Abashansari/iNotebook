@@ -13,11 +13,11 @@ export default function NoteState({ children }) {
         method: 'GET',
         headers: {
           'Content-Type': 'application/json',
-          'auth-token': 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjgzYWUwMjAzZjIzZDZhOTdjMmI3ZGZmIn0sImlhdCI6MTc0ODY5NTQ2N30.BlqJGITGAimHU5QtwHdJnudXX1pecMhDCBi38C3Sohw'
+          'auth-token': localStorage.getItem('token')
         },
       });
       const jsonResponse = await response.json();
-      console.log(jsonResponse);
+      // console.log(jsonResponse);
       setNotes(jsonResponse);
     } catch (error) {
       console.error("Error fetching notes:", error.message);
@@ -33,14 +33,14 @@ export default function NoteState({ children }) {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
-          'auth-token': 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjgzYWUwMjAzZjIzZDZhOTdjMmI3ZGZmIn0sImlhdCI6MTc0ODY5NTQ2N30.BlqJGITGAimHU5QtwHdJnudXX1pecMhDCBi38C3Sohw'
+          'auth-token': localStorage.getItem('token')
         },
         body: JSON.stringify(data)
       });
 
       if (response.ok) {
         const jsonResponse = await response.json();
-        console.log(jsonResponse);
+        // console.log(jsonResponse);
         setNotes([...notes, jsonResponse]); // Add real note from server
       } else {
         console.log("Request status:", response.status);
@@ -59,7 +59,7 @@ export default function NoteState({ children }) {
         method: 'DELETE',
         headers: {
           'Content-Type': 'application/json',
-          'auth-token': 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjgzYWUwMjAzZjIzZDZhOTdjMmI3ZGZmIn0sImlhdCI6MTc0ODY5NTQ2N30.BlqJGITGAimHU5QtwHdJnudXX1pecMhDCBi38C3Sohw'
+          'auth-token': localStorage.getItem('token')
         }
       });
 // logic
@@ -80,14 +80,14 @@ export default function NoteState({ children }) {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',
-          'auth-token': 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjgzYWUwMjAzZjIzZDZhOTdjMmI3ZGZmIn0sImlhdCI6MTc0ODY5NTQ2N30.BlqJGITGAimHU5QtwHdJnudXX1pecMhDCBi38C3Sohw'
+          'auth-token': localStorage.getItem('token')
         },
         body: JSON.stringify(data)
       });
 
       if (response.ok) {
         const jsonResponse = await response.json();
-        console.log(jsonResponse);
+        // console.log(jsonResponse);
       } else {
         console.error('Error updating note:', response.status);
       }
