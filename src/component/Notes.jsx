@@ -1,8 +1,11 @@
 import React, { useContext, useEffect, useRef, useState } from 'react';
 import NoteContext from '../context/notes/NoteContext';
 import NotesItems from './NotesItems';
+import { useNavigate } from 'react-router-dom';
 
 export default function Notes() {
+
+  const Navigate = useNavigate()
   const { notes, getNotes, editNote } = useContext(NoteContext);
 
   const [note, setNote] = useState({ id: '', title: '', description: '', tag: '' });
@@ -10,8 +13,14 @@ export default function Notes() {
   const modalOpenRef = useRef(null);
 
   useEffect(() => {
-    getNotes(); // fetch notes from backend on mount
-  }, []);
+    if(localStorage.getItem('token')){
+      getNotes(); // fetch notes from backend on mount
+    }else{
+      Navigate('/login')
+    }
+    
+  },[getNotes,Navigate]);
+  
 
   const updateNote = (currentNote) => {
     setNote({
@@ -44,15 +53,7 @@ export default function Notes() {
   return (
     <>
       {/* Hidden button to open Bootstrap modal */}
-      <button
-        ref={modalOpenRef}
-        type="button"
-        className="btn btn-primary d-none"
-        data-bs-toggle="modal"
-        data-bs-target="#editModal"
-      >
-        Open Modal
-      </button>
+      <button ref={modalOpenRef} type="button" className="btn btn-primary d-none" data-bs-toggle="modal" data-bs-target="#editModal">Open Modal</button>
 
       {/*--------------Display Notes list in Screen------------------------------------------ */}
       <div className="row my-3">
@@ -70,29 +71,9 @@ export default function Notes() {
               <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close" />
             </div>
             <div className="modal-body">
-              <input
-                type="text"
-                className="form-control my-2"
-                name="title"
-                value={note.title}
-                onChange={onChange}
-                placeholder="Title"
-              />
-              <textarea
-                className="form-control my-2"
-                name="description"
-                value={note.description}
-                onChange={onChange}
-                placeholder="Description"
-              />
-              <input
-                type="text"
-                className="form-control my-2"
-                name="tag"
-                value={note.tag}
-                onChange={onChange}
-                placeholder="Tag"
-              />
+              <input type="text" className="form-control my-2" name="title" value={note.title} onChange={onChange} placeholder="Title"/>
+              <textarea className="form-control my-2" name="description" value={note.description} onChange={onChange} placeholder="Description"/>
+              <input type="text" className="form-control my-2" name="tag" value={note.tag} onChange={onChange} placeholder="Tag"/>
               {/*  Validation Message */}
               {!isValid && (
                 <div className="text-danger">
