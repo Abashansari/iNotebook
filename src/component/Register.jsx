@@ -47,8 +47,13 @@ export default function Register() {
     <div>
       
       <form onSubmit={register}>
-        
-        
+      <div className='my-3'>
+          <h2>iNoteBook</h2>
+          <p>your notes on cloud ☁️ </p>
+        </div>
+        <div className='mb-3'>
+          <p>New to myNotebook? 👉Create a new account here !</p>
+        </div>
         <div className="mb-3">
           <label htmlFor="name" className="form-label">User Name</label>
           <input type="text" className="form-control" id="name" name="userName" onChange={onChange}/>
@@ -70,7 +75,10 @@ export default function Register() {
           <input type="password" className="form-control" id="confirmPassword" name="confirmPassword" onChange={onChange}/>
         </div>
 
-        <button type="submit" className="btn btn-primary">Submit</button>
+        <button type="submit" className="btn btn-primary">SignUp</button>
+        <div className='my-3'>
+          <a href="/login" className="text-decoration-none">Already have an account?<u>login</u></a>
+        </div>
       </form>
     </div>
   );

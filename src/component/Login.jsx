@@ -41,6 +41,13 @@ export default function Login() {
   return (
     <div>
       <form onSubmit={handleSubmit}>
+        <div className='my-3'>
+          <h2>iNoteBook</h2>
+          <p>your notes on cloud ☁️ </p>
+        </div>
+        <div className='mb-3'>
+          <p>Login to continue using iNotebook &#128522;</p>
+        </div>
         <div className="mb-3">
           <label htmlFor="exampleInputEmail1" className="form-label">Email address</label>
           <input type="email" className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" name='email' value={credentials.email} onChange={onChange} />
@@ -50,7 +57,10 @@ export default function Login() {
           <label htmlFor="exampleInputPassword1" className="form-label">Password</label>
           <input type="password" className="form-control" id="exampleInputPassword1" name='password' value={credentials.password} onChange={onChange} />
         </div>
-        <button type="submit" className="btn btn-primary" >Submit</button>
+        <button type="submit" className="btn btn-primary">Login</button>
+        <div className='my-3'>
+          <a href="/register" className="text-decoration-none">Don't have an account?<u>SignUp</u></a>
+        </div>
       </form>
     </div>
   )
