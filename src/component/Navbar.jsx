@@ -6,7 +6,7 @@ export default function Navbar (){
     let location = useLocation()
     return (
       <>
-        <nav className="navbar fixed-top navbar-expand-lg bg-body-tertiary ">
+        <nav className="navbar fixed-top navbar-expand-lg bg-info bg-opacity-25 p-3">
           <div className="container-fluid">
 
             <Link className="navbar-brand" to="">iNoteBook</Link>
