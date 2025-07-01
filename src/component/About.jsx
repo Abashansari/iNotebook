@@ -26,9 +26,6 @@ export default function About() {
         <li>🎯 Clean, distraction-free interface</li>
       </ul>
 
-      <p className="mt-4 text-muted small">
-        &copy; {new Date().getFullYear()} myNoteBook. All rights reserved.
-      </p>
     </div>
   </div>
 </div>
