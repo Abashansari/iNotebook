@@ -7,7 +7,8 @@ export default function About() {
   <div className="card shadow-sm border-0">
     <div className="card-body">
       <h1 className="mb-4 text-primary">
-        About <span className="text-success">myNoteBook</span>
+        About  <span className="has-text-primary">my</span><span className="has-text-dark">Note</span><span className="has-text-warning">Book</span>
+
       </h1>
 
       <p className="fs-5">
