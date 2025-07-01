@@ -48,7 +48,7 @@ export default function Register() {
       
       <form onSubmit={register}>
       <div className='my-3'>
-          <h2>iNoteBook</h2>
+          <h2>myNoteBook</h2>
           <p>your notes on cloud ☁️ </p>
         </div>
         <div className='mb-3'>

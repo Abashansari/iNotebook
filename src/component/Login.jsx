@@ -42,11 +42,11 @@ export default function Login() {
     <div>
       <form onSubmit={handleSubmit}>
         <div className='my-3'>
-          <h2>iNoteBook</h2>
+          <h2>myNoteBook</h2>
           <p>your notes on cloud ☁️ </p>
         </div>
         <div className='mb-3'>
-          <p>Login to continue using iNotebook &#128522;</p>
+          <p>Login to continue using myNotebook &#128522;</p>
         </div>
         <div className="mb-3">
           <label htmlFor="exampleInputEmail1" className="form-label">Email address</label>

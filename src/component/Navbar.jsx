@@ -9,7 +9,7 @@ export default function Navbar (){
         <nav className="navbar fixed-top navbar-expand-lg bg-info bg-opacity-25 p-3">
           <div className="container-fluid">
 
-            <Link className="navbar-brand" to="">iNoteBook</Link>
+            <Link className="navbar-brand" to="">myNoteBook</Link>
 
             <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
               <span className="navbar-toggler-icon"></span>
