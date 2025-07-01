@@ -7,9 +7,11 @@ import Home from './component/Home';
 import Login from './component/Login';
 import Register from './component/Register';
 import About from './component/About';
+import Footer from './component/Footer';
 
 function App() {
   return (
+    <>
     <NoteState>
       <Router>
         <NavBar />
@@ -21,6 +23,8 @@ function App() {
         </Routes>
       </Router>
     </NoteState>
+    <Footer />
+    </>
   );
 }
 
