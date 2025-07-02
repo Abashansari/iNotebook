@@ -2,6 +2,7 @@ import React, { useContext } from 'react';
 import Notes from './Notes';
 import NoteContext from '../context/notes/NoteContext';
 import AddNote from './AddNote';
+import { Link } from 'react-router-dom';
 
 export default function Home() {
   const { note } = useContext(NoteContext);
@@ -17,7 +18,7 @@ export default function Home() {
           </h3>
           <p className="mb-5">
             An online web platform where you can create, edit, upload, and delete your notes/information privately and securely without any disturbance.
-            For more info, you can check out our <a href="/about" className="has-text-link">About Page</a>.
+            For more info, you can check out our <Link to="/about" className="has-text-link">About Page</Link>.
           </p>
 
           <AddNote />
